@@ -1,0 +1,101 @@
+MiniMon Teknik Rapor
+===================
+
+1. İzlenen Sistem Kaynakları
+---------------------------
+
+1.1 CPU İzleme
+- Genel CPU kullanım yüzdesi
+- Kullanıcı modu CPU kullanımı
+- Sistem modu CPU kullanımı
+- Boşta kalma süresi
+- Çekirdek sayısı tespiti
+- Süreç bazlı CPU kullanımı
+
+1.2 Bellek (RAM) İzleme
+- Toplam fiziksel bellek miktarı
+- Kullanılabilir bellek miktarı
+- Kullanılan bellek miktarı
+- Takas alanı (Page File) kullanımı
+- Süreç bazlı bellek kullanımı
+- Çalışma kümesi (Working Set) boyutu
+
+1.3 Disk İzleme
+- Disk sürücülerinin tespiti
+- Toplam disk alanı
+- Boş disk alanı
+- Disk I/O istatistikleri
+- Sistem önbelleği (System Cache) kullanımı
+
+1.4 Ağ İzleme
+- Ağ arayüzlerinin tespiti
+- Gönderilen/alınan veri miktarları
+- Aktif TCP bağlantıları
+- Ağ trafiği istatistikleri
+
+2. Kullanılan Teknolojiler
+-------------------------
+
+2.1 Windows API'leri
+- GetSystemTimes: CPU kullanımı için
+- GlobalMemoryStatusEx: RAM bilgileri için
+- GetLogicalDrives: Disk bilgileri için
+- GetIfTable: Ağ bilgileri için
+- CreateToolhelp32Snapshot: Süreç bilgileri için
+- GetProcessMemoryInfo: Süreç bellek kullanımı için
+- GetProcessTimes: Süreç CPU kullanımı için
+
+2.2 Programlama Dili ve Araçlar
+- C programlama dili
+- Windows SDK (Bende 11 yüklü)
+- MinGW/GCC derleyici
+- Windows Performance Counter API
+- Windows Management Instrumentation (WMI)
+
+2.3 Veri Formatları
+- CSV (Comma-Separated Values)
+- JSON (JavaScript Object Notation)
+- Windows Performance Counter veri yapıları
+
+3. Proje Sınırlamaları
+---------------------
+
+3.1 Teknik Sınırlamalar
+- Windows işletim sistemi ile sınırlıdır
+- Yönetici hakları gerektirir !
+- Bazı sistem süreçlerine erişim kısıtlıdır
+- Çekirdek bazlı CPU kullanımı için PDH/ETW API'leri gerekir
+- Gerçek zamanlı I/O metrikleri için ek API'ler gerekir
+
+3.2 Performans Sınırlamaları
+- Süreç listesi maksimum 128 süreç ile sınırlıdır
+- Ağ arayüzü listesi maksimum 128 arayüz ile sınırlıdır
+- CPU kullanımı hesaplaması 1 saniyelik örnekleme ile yapılır
+- Periyodik raporlama için bellek kullanımı artabilir
+
+3.3 Güvenlik Sınırlamaları
+- Sistem süreçlerine erişim kısıtlıdır
+- Bazı süreçlerin bellek bilgilerine erişilemeyebilir
+- Ağ bağlantı detayları için ek yetkiler gerekebilir
+
+4. Mimari Detaylar
+-----------------
+
+4.1 Modüler Yapı
+- core/collector.c: Sistem kaynaklarını toplar
+- core/reporter.c: Raporlama işlemlerini yapar
+- ui/cli.c: Kullanıcı arayüzünü sağlar
+- main.c: Program giriş noktası
+
+4.2 Veri Akışı
+1. Kullanıcı komutu alınır
+2. İlgili modül çağrılır
+3. Sistem kaynakları toplanır
+4. Veriler işlenir
+5. Sonuçlar gösterilir/raporlanır
+
+4.3 Hata Yönetimi
+- Windows API hata kodları kontrol edilir
+- Bellek ayırma hataları yönetilir
+- Dosya işlemleri güvenli şekilde yapılır
+- Kullanıcı girdileri doğrulanır 
