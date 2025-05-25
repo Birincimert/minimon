@@ -9,7 +9,8 @@ Kurulum
 2. İndirdiğiniz dosyayı istediğiniz bir konuma çıkartın
 3. Komut istemini (CMD) veya PowerShell'i yönetici olarak çalıştırın
 4. MiniMon'un bulunduğu dizine gidin
-5. Programı çalıştırın: minimon.exe [komut]
+5. Terminali açın ve şu kodu yazın: gcc main.c core/collector.c ui/cli.c core/reporter.c -o minimon.exe -lIphlpapi -lpsapi
+5. Programı çalıştırın: " ./minimon.exe help " ile programda ne yapabileceğinizi görebilirsiniz. 
 
 Kullanım
 
